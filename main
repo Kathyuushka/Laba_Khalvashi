@@ -1,0 +1,26 @@
+% Факты родо-видовых связей
+is_a(paris, france).
+is_a(france, europe).
+
+% Транзитивное правило для родо-видовых связей
+is_a(X, Z) :-
+    is_a(X, Y),  % Если X принадлежит Y
+    is_a(Y, Z).  % И Y принадлежит Z, тогда X принадлежит Z.
+
+% Тестирование
+:- initialization(main).
+
+main :-
+    % Проверка прямого факта
+    writeln('Test: is_a(paris, france)'),
+    ( is_a(paris, france) ->
+        writeln('Yes, paris is_a france.');
+        writeln('No, paris is not is_a france.')
+    ),
+    
+    % Проверка транзитивного правила
+    writeln('Test: is_a(paris, europe)'),
+    ( is_a(paris, europe) ->
+        writeln('Yes, paris is_a europe.');
+        writeln('No, paris is not is_a europe.')
+    ).
